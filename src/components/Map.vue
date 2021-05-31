@@ -126,7 +126,7 @@ body{
     background-color: #e6e6fa;
   }
   .places-title{
-    margin-top: 85px;
+    margin-top: 105px;
     color: rgb(126, 126, 126);
     font-weight: bolder;
     
