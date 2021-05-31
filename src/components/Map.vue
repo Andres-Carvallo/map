@@ -50,17 +50,13 @@ body{
     cursor: pointer;
   }
   .map{
-    width:100%;  
     height: 760px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
   }
   .over-map{
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    align-self: center;
-    position: absolute; 
-    top: 83%;
-    left: 41.8%;
+    position: relative;
     z-index: 99;
     background: #4F4F4F;
     border-radius: 30px;
@@ -70,15 +66,13 @@ body{
     line-height: 22px;
     letter-spacing: 0em;
     color: #ffff;
-    width:359px;
+    width:350px;
     height: 130px;
 
 
   }
   .over-map-detail{
-    position: absolute; 
-    top: 67.5%;
-    left: 41.8%;
+    position: relative; 
     z-index: 99;
     background: #4F4F4F;
     border-radius: 30px;
@@ -88,7 +82,7 @@ body{
     line-height: 22px;
     letter-spacing: 0em;
     color: #ffff;
-    width:359px;
+    width:345px;
     height: 250px;
     
   }
@@ -258,15 +252,7 @@ body{
         }
 
 
-  @media (max-width: 400px) {
-		.over-map{
-      top: 83%;
-      left: 0;
-		}
-    .over-map-detail{
-      top: 67%;
-    }
-	}
+
 </style>
 
 <template>
@@ -285,7 +271,7 @@ body{
     <GmapMap
       class="map"
       :center='center'
-      :zoom='20'
+      :zoom='15'
       
     >
       <GmapMarker
@@ -296,40 +282,42 @@ body{
         :icon="markerOptions"
 
       />
-      <div class="over-map"  :class=" detail ? 'over-map-detail' : 'over-map'" :style="showInfo ? 'display:block;' : 'display:none;'" v-bind="placeSelected">
-        <div class="line" @click="showDetail"></div>
-        <div class="over-map-info" v-show="places.length >= 1" >
-          <div>
-            <div class="over-map-text-name">
-              {{placeSelected.name}}
+      <div class="over-map"  :class=" detail ? 'over-map-detail' : 'over-map'" :style="showInfo ? 'display:flex;' : 'display:none;'" v-bind="placeSelected">
+        <div style="display:block;">
+          <div class="line" @click="showDetail"></div>
+          <div class="over-map-info" v-show="places.length >= 1" >
+            <div>
+              <div class="over-map-text-name">
+                {{placeSelected.name}}
+              </div>
+              <div class="over-map-text-address">
+                {{placeSelected.formatted_address}}
+              </div>
+              <div class="over-map-text-detail">
+                <div  @click="showDetail" >Ver perfil de colegio</div>
+              </div>
             </div>
-            <div class="over-map-text-address">
-              {{placeSelected.formatted_address}}
-            </div>
-            <div class="over-map-text-detail">
-              <div  @click="showDetail" >Ver perfil de colegio</div>
-            </div>
-          </div>
-          <div v-show="placeSelected.photos">
-            <img class="circular" :src="`${placeSelected? imgUrl : ''}`" alt="">
-          </div>
-        </div>
-        <div class="card-detail" v-show="detail">
-          <div class="upper-card-detail">
-            <div class="flower-div">
-              <img class="upper-card-icon" src="../assets/flower.png" alt="">
-              <div class="upper-card-text">1 2 3 4</div>
-              <img class="upper-card-icon" src="../assets/house.png" alt="">
-              <div class="upper-card-text2">1 2 3 4</div>
-              <img class="upper-card-icon" src="../assets/grass.png" alt="">
-              <div class="upper-card-text3">1 2 3 4</div>
-              <img class="upper-card-icon" src="../assets/building.png" alt="">
-              <div class="upper-card-text4">1 2 3 4</div>
+            <div v-show="placeSelected.photos">
+              <img class="circular" :src="`${placeSelected? imgUrl : ''}`" alt="">
             </div>
           </div>
-          <div class="lower-card-detail">
-            <div class="lower-card-text">Particular Subvencionado</div>
-            <div class="lower-card-text2">Pre Kinder a IV°</div>
+          <div class="card-detail" v-show="detail">
+            <div class="upper-card-detail">
+              <div class="flower-div">
+                <img class="upper-card-icon" src="../assets/flower.png" alt="">
+                <div class="upper-card-text">1 2 3 4</div>
+                <img class="upper-card-icon" src="../assets/house.png" alt="">
+                <div class="upper-card-text2">1 2 3 4</div>
+                <img class="upper-card-icon" src="../assets/grass.png" alt="">
+                <div class="upper-card-text3">1 2 3 4</div>
+                <img class="upper-card-icon" src="../assets/building.png" alt="">
+                <div class="upper-card-text4">1 2 3 4</div>
+              </div>
+            </div>
+            <div class="lower-card-detail">
+              <div class="lower-card-text">Particular Subvencionado</div>
+              <div class="lower-card-text2">Pre Kinder a IV°</div>
+            </div>
           </div>
         </div>
       </div>
