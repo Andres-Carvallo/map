@@ -55,9 +55,12 @@ body{
     justify-content: center;
     align-items: flex-end;
   }
+  .over-map-div{
+    display:block;
+  }
   .over-map{
     position: relative;
-    z-index: 99;
+    z-index: 1;
     background: #4F4F4F;
     border-radius: 30px;
     font-size: 14px;
@@ -69,11 +72,18 @@ body{
     width:350px;
     height: 130px;
 
+    -webkit-transition: height 1s ease-out;
+    -moz-transition: height 1s ease-out;
+    -o-transition: height 1s ease-out;
+    transition: height 1s ease-out;
+
 
   }
   .over-map-detail{
+
+
     position: relative; 
-    z-index: 99;
+    z-index: 1;
     background: #4F4F4F;
     border-radius: 30px;
     font-size: 14px;
@@ -82,8 +92,8 @@ body{
     line-height: 22px;
     letter-spacing: 0em;
     color: #ffff;
-    width:345px;
-    height: 250px;
+    width:350px;
+    height: 235px;
     
   }
 
@@ -116,6 +126,7 @@ body{
     background-color: #e6e6fa;
   }
   .places-title{
+    margin-top: 75px;
     color: rgb(126, 126, 126);
     font-weight: bolder;
     
@@ -165,9 +176,9 @@ body{
     .card-detail{
       background-color: lavender;
       color: rgb(126, 126, 126);
-      width: 95%;
-      margin-top: 10px;
+      width: 332px;
       margin-left: 10px;
+      margin-top: 10px;
       border-radius: 30px;
       height: 110px;
 
@@ -282,8 +293,8 @@ body{
         :icon="markerOptions"
 
       />
-      <div class="over-map"  :class=" detail ? 'over-map-detail' : 'over-map'" :style="showInfo ? 'display:flex;' : 'display:none;'" v-bind="placeSelected">
-        <div style="display:block;">
+      <div class="over-map"  :class=" detail ?  'over-map-detail' : 'over-map'" :style="showInfo ? 'display:flex;' : 'display:none;'" v-bind="placeSelected">
+        <div class="over-map-div">
           <div class="line" @click="showDetail"></div>
           <div class="over-map-info" v-show="places.length >= 1" >
             <div>
@@ -301,23 +312,26 @@ body{
               <img class="circular" :src="`${placeSelected? imgUrl : ''}`" alt="">
             </div>
           </div>
-          <div class="card-detail" v-show="detail">
-            <div class="upper-card-detail">
-              <div class="flower-div">
-                <img class="upper-card-icon" src="../assets/flower.png" alt="">
-                <div class="upper-card-text">1 2 3 4</div>
-                <img class="upper-card-icon" src="../assets/house.png" alt="">
-                <div class="upper-card-text2">1 2 3 4</div>
-                <img class="upper-card-icon" src="../assets/grass.png" alt="">
-                <div class="upper-card-text3">1 2 3 4</div>
-                <img class="upper-card-icon" src="../assets/building.png" alt="">
-                <div class="upper-card-text4">1 2 3 4</div>
+          <div class="card-detail"  v-show="detail">
+            <div v-show="cardInfo">
+              <div class="upper-card-detail">
+                <div class="flower-div">
+                  <img class="upper-card-icon" src="../assets/flower.png" alt="">
+                  <div class="upper-card-text">1 2 3 4</div>
+                  <img class="upper-card-icon" src="../assets/house.png" alt="">
+                  <div class="upper-card-text2">1 2 3 4</div>
+                  <img class="upper-card-icon" src="../assets/grass.png" alt="">
+                  <div class="upper-card-text3">1 2 3 4</div>
+                  <img class="upper-card-icon" src="../assets/building.png" alt="">
+                  <div class="upper-card-text4">1 2 3 4</div>
+                </div>
+              </div>
+              <div class="lower-card-detail">
+                <div class="lower-card-text">Particular Subvencionado</div>
+                <div class="lower-card-text2">Pre Kinder a IV°</div>
               </div>
             </div>
-            <div class="lower-card-detail">
-              <div class="lower-card-text">Particular Subvencionado</div>
-              <div class="lower-card-text2">Pre Kinder a IV°</div>
-            </div>
+  
           </div>
         </div>
       </div>
@@ -358,6 +372,7 @@ export default {
       imgUrl: "",
       detail: false,
       distInbetween: "",
+      cardInfo: false,
 
     }
   },
@@ -441,10 +456,14 @@ export default {
     },
 
     showDetail:function(){
+      var app = this;
       if(this.detail == false){
-        this.detail = true
+        this.detail = true;
+        setTimeout(function(){ app.cardInfo = true; }, 1000);
       }else{
-        this.detail = false
+        this.detail = false;
+        this.cardInfo = false;
+
       }
     },
 
