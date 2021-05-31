@@ -93,7 +93,7 @@ body{
     letter-spacing: 0em;
     color: #ffff;
     width:350px;
-    height: 250px;
+    height: 245px;
     
   }
 
