@@ -3,7 +3,8 @@
 body{
   font-family: Roboto;
   height: 760px;
-  background-color: #e6e6fa;
+  background: radial-gradient(111.72% 111.72% at 50% -11.72%, #2D9CDB 0%, #FB8EFD 100%);
+
   position: relative;
 }
 
@@ -15,7 +16,7 @@ body{
   }
   .form-control{
     font-family: Roboto;
-    color: rgb(126, 126, 126);
+    color: rgb(90, 90, 90);
     width: 246px;
     height: 40px;
     left: 84px;
@@ -33,20 +34,20 @@ body{
 
   .iconSearch { 
     margin-left: 10px;
-    color: rgb(126, 126, 126);
+    color: rgb(90, 90, 90);
     cursor: pointer;
     margin-top: 10px;
   }
   .iconBack{
     margin-right: 15px;
-    color: rgb(126, 126, 126);
+    color: rgb(90, 90, 90);
     cursor: pointer;
     margin-top: 10px;
   }
 
   .iconClose {
     margin-right: 20px;
-    color: rgb(126, 126, 126);
+    color: rgb(90, 90, 90);
     cursor: pointer;
   }
   .map{
@@ -102,6 +103,7 @@ body{
       text-align: left;
       padding-left: 15px;
       display: flex;
+      justify-content: space-between;
       width: 300px;
     }
     .over-map-text-name{
@@ -123,16 +125,16 @@ body{
   .pins{
     text-align: center;
     padding-bottom: 40px;
-    background-color: #e6e6fa;
+
   }
   .places-title{
-    margin-top: 105px;
-    color: rgb(126, 126, 126);
+    margin-top: 40px;
+    color: rgb(90, 90, 90);
     font-weight: bolder;
     
   }
   .places-distance{
-    color: rgb(126, 126, 126);
+    color: rgb(90, 90, 90);
     font-weight: bold;
     font-size: 12px;
   }
@@ -150,7 +152,7 @@ body{
       justify-content: left;
       align-items: center;
       align-self: center;
-      color: rgb(126, 126, 126);
+      color: rgb(90, 90, 90);
       font-weight: bold;
       font-size: 12px;
     }
@@ -219,6 +221,7 @@ body{
         align-items: center;
         width: 35px;
         font-size: 10px;
+
       }
 
       .upper-card-text3{
@@ -312,7 +315,7 @@ body{
               <img class="circular" :src="`${placeSelected? imgUrl : ''}`" alt="">
             </div>
           </div>
-          <div class="card-detail"  v-show="detail">
+          <div class="card-detail" :style="cardInfo ? 'background-color: lavender;' : 'background: none;'" v-show="detail">
             <div v-show="cardInfo">
               <div class="upper-card-detail">
                 <div class="flower-div">
