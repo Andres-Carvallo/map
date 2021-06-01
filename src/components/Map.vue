@@ -7,12 +7,18 @@ body{
 
   position: relative;
 }
+  .header{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    margin: 30px 30px 0 30px;
+  }
 
   .markers{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
+    margin-top: 10px;
   }
   .form-control{
     font-family: Roboto;
@@ -33,13 +39,13 @@ body{
     }
 
   .iconSearch { 
-    margin-left: 10px;
+    margin-left: 20px;
     color: rgb(90, 90, 90);
     cursor: pointer;
     margin-top: 10px;
   }
   .iconBack{
-    margin-right: 15px;
+    margin-right: 20px;
     color: rgb(90, 90, 90);
     cursor: pointer;
     margin-top: 10px;
@@ -271,6 +277,10 @@ body{
 
 <template>
   <div>
+    <div class="header">
+      <span @click='refresh' class="material-icons md-36 iconBack">more_horiz</span>
+      <span  @click='addMarker' class="material-icons md-36 iconSearch">menu</span>
+    </div>
     <div class="markers">
       <span @click='refresh' class="material-icons md-36 iconBack">arrow_back</span>
       <GmapAutocomplete
